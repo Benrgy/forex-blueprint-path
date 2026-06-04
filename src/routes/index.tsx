@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Play, Calendar, Star, CheckCircle2, ShieldCheck, TrendingUp, Clock, Pause } from "lucide-react";
+import { Play, Calendar, Star, CheckCircle2, TrendingUp, Pause } from "lucide-react";
 
 import { Countdown } from "@/components/Countdown";
 import vsl from "@/assets/tfb-vsl.mp4.asset.json";
