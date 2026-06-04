@@ -202,14 +202,36 @@ const PROOFS: { src: string; alt: string; label: string }[] = [
 ];
 
 function Landing() {
-  // Load Calendly inline embed script
+  // Load Calendly inline embed script (idempotent + re-init on mount)
   useEffect(() => {
-    if (document.querySelector("script[data-calendly]")) return;
+    const init = () => {
+      // @ts-expect-error - Calendly global injected by external script
+      if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
+        document.querySelectorAll<HTMLElement>(".calendly-inline-widget").forEach((el) => {
+          if (el.dataset.processed === "true") return;
+          const url = el.getAttribute("data-url");
+          if (!url) return;
+          // @ts-expect-error - Calendly global
+          window.Calendly.initInlineWidget({ url, parentElement: el });
+          el.dataset.processed = "true";
+        });
+      }
+    };
+    const existing = document.querySelector<HTMLScriptElement>("script[data-calendly]");
+    if (existing) {
+      init();
+      return;
+    }
     const s = document.createElement("script");
     s.src = "https://assets.calendly.com/assets/external/widget.js";
     s.async = true;
     s.dataset.calendly = "1";
+    s.onload = init;
     document.body.appendChild(s);
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://assets.calendly.com/assets/external/widget.css";
+    document.head.appendChild(link);
   }, []);
 
   return (
@@ -306,7 +328,7 @@ function Landing() {
       </section>
 
       {/* Calendar embed */}
-      <section id="calendar" className="mx-auto mt-24 max-w-5xl px-5 scroll-mt-10">
+      <section id="calendar" className="mx-auto mt-24 max-w-2xl px-5 scroll-mt-10">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
             <Calendar className="h-3.5 w-3.5" /> Plan jouw gratis 1-op-1 gesprek
@@ -319,11 +341,23 @@ function Landing() {
           </p>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_10px_60px_-25px_rgba(80,40,200,0.35)]">
+        <div className="relative mt-8 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_10px_60px_-25px_rgba(80,40,200,0.35)]">
           <div
             className="calendly-inline-widget"
-            data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&primary_color=7c3aed`}
-            style={{ minWidth: "320px", height: "780px" }}
+            data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=7c3aed`}
+            style={{ minWidth: "320px", height: "820px" }}
+          />
+          {/* Mask Calendly bottom footer */}
+          <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-white" />
+          {/* Mask Calendly top-right "GECREEERD DOOR Calendly" ribbon */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-0 right-0 bg-white"
+            style={{
+              width: "170px",
+              height: "130px",
+              clipPath: "polygon(100% 0, 0 0, 100% 100%)",
+            }}
           />
         </div>
 
