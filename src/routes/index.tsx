@@ -341,12 +341,14 @@ function Landing() {
           </p>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_10px_60px_-25px_rgba(80,40,200,0.35)]">
+        <div className="relative mt-8 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_10px_60px_-25px_rgba(80,40,200,0.35)]">
           <div
             className="calendly-inline-widget"
-            data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&primary_color=7c3aed`}
+            data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=7c3aed`}
             style={{ minWidth: "320px", height: "780px" }}
           />
+          {/* Cover Calendly branding footer */}
+          <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-card" />
         </div>
 
         <div className="mt-6 text-center">
