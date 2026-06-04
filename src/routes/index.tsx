@@ -226,8 +226,8 @@ function Landing() {
         </div>
 
         {/* Massive headline with selective purple highlights */}
-        <h1 className="mt-8 text-center text-3xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
-          "Kopieer &amp; Plak Mijn <span className="text-primary">Bewezen Blueprint</span> Om Eindelijk Te <span className="text-primary">Slagen</span> Voor Je Prop Firm Challenge — En Consistente Payouts Te Behalen"
+        <h1 className="mt-8 text-center text-[28px] sm:text-4xl md:text-[44px] lg:text-5xl font-extrabold leading-[1.12] tracking-tight max-w-5xl mx-auto">
+          "Kopieer &amp; Plak Mijn <span className="text-primary">Bewezen Blueprint</span> Om Te <span className="text-primary">Slagen</span> Voor Je Prop Firm Challenge En <span className="text-primary">Consistente Payouts</span> Te Behalen"
         </h1>
 
         <p className="mt-7 text-center text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
