@@ -202,14 +202,36 @@ const PROOFS: { src: string; alt: string; label: string }[] = [
 ];
 
 function Landing() {
-  // Load Calendly inline embed script
+  // Load Calendly inline embed script (idempotent + re-init on mount)
   useEffect(() => {
-    if (document.querySelector("script[data-calendly]")) return;
+    const init = () => {
+      // @ts-expect-error - Calendly global injected by external script
+      if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
+        document.querySelectorAll<HTMLElement>(".calendly-inline-widget").forEach((el) => {
+          if (el.dataset.processed === "true") return;
+          const url = el.getAttribute("data-url");
+          if (!url) return;
+          // @ts-expect-error - Calendly global
+          window.Calendly.initInlineWidget({ url, parentElement: el });
+          el.dataset.processed = "true";
+        });
+      }
+    };
+    const existing = document.querySelector<HTMLScriptElement>("script[data-calendly]");
+    if (existing) {
+      init();
+      return;
+    }
     const s = document.createElement("script");
     s.src = "https://assets.calendly.com/assets/external/widget.js";
     s.async = true;
     s.dataset.calendly = "1";
+    s.onload = init;
     document.body.appendChild(s);
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://assets.calendly.com/assets/external/widget.css";
+    document.head.appendChild(link);
   }, []);
 
   return (
