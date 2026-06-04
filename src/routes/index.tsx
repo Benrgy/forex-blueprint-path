@@ -342,21 +342,23 @@ function Landing() {
         </div>
 
         <div className="relative mt-8 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_10px_60px_-25px_rgba(80,40,200,0.35)]">
-          <div className="relative" style={{ height: "780px" }}>
-            {/* Scale + offset to push Calendly branding (top-right ribbon + bottom footer) outside the viewport */}
-            <div
-              className="absolute inset-0"
-              style={{ transform: "scale(1.06)", transformOrigin: "center center" }}
-            >
-              <div
-                className="calendly-inline-widget"
-                data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=7c3aed`}
-                style={{ minWidth: "320px", width: "100%", height: "100%" }}
-              />
-            </div>
-            {/* Mask any residual branding */}
-            <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-card" />
-          </div>
+          <div
+            className="calendly-inline-widget"
+            data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=7c3aed`}
+            style={{ minWidth: "320px", height: "780px" }}
+          />
+          {/* Mask Calendly bottom footer */}
+          <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-card" />
+          {/* Mask Calendly top-right "GECREEERD DOOR Calendly" ribbon (covers triangular area on the inner card) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-0 right-0 bg-white"
+            style={{
+              width: "min(180px, 28%)",
+              height: "140px",
+              clipPath: "polygon(100% 0, 0 0, 100% 100%)",
+            }}
+          />
         </div>
 
         <div className="mt-6 text-center">
