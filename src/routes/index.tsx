@@ -347,8 +347,9 @@ function Landing() {
             data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=7c3aed`}
             style={{ minWidth: "320px", height: "780px" }}
           />
-          {/* Cover Calendly branding footer */}
+          {/* Cover Calendly branding (footer + top-right ribbon) */}
           <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-card" />
+          <div aria-hidden className="pointer-events-none absolute top-0 right-0 h-32 w-32 bg-card [clip-path:polygon(100%_0,0_0,100%_100%)]" />
         </div>
 
         <div className="mt-6 text-center">
