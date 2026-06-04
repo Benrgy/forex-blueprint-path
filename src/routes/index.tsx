@@ -328,7 +328,7 @@ function Landing() {
       </section>
 
       {/* Calendar embed */}
-      <section id="calendar" className="mx-auto mt-24 max-w-5xl px-5 scroll-mt-10">
+      <section id="calendar" className="mx-auto mt-24 max-w-2xl px-5 scroll-mt-10">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
             <Calendar className="h-3.5 w-3.5" /> Plan jouw gratis 1-op-1 gesprek
@@ -345,17 +345,17 @@ function Landing() {
           <div
             className="calendly-inline-widget"
             data-url={`${CALENDAR_URL}&hide_gdpr_banner=1&hide_landing_page_details=1&primary_color=7c3aed`}
-            style={{ minWidth: "320px", height: "780px" }}
+            style={{ minWidth: "320px", height: "820px" }}
           />
           {/* Mask Calendly bottom footer */}
-          <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-card" />
-          {/* Mask Calendly top-right "GECREEERD DOOR Calendly" ribbon (covers triangular area on the inner card) */}
+          <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-white" />
+          {/* Mask Calendly top-right "GECREEERD DOOR Calendly" ribbon */}
           <div
             aria-hidden
             className="pointer-events-none absolute top-0 right-0 bg-white"
             style={{
-              width: "min(180px, 28%)",
-              height: "140px",
+              width: "170px",
+              height: "130px",
               clipPath: "polygon(100% 0, 0 0, 100% 100%)",
             }}
           />
