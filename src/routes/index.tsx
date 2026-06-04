@@ -214,30 +214,26 @@ function Landing() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Urgency bar */}
-      <div className="w-full bg-foreground text-background">
-        <div className="mx-auto max-w-6xl px-5 py-2.5 flex items-center justify-center gap-2 text-xs sm:text-sm font-medium">
-          <Clock className="h-4 w-4 text-[var(--accent-red)]" />
-          <span>Beperkt aantal strategiegesprekken deze week — boek voordat de tijd om is.</span>
-        </div>
-      </div>
+      <div className="mx-auto max-w-4xl px-5 pt-12 sm:pt-16">
+        {/* Countdown at top — advenz style */}
+        <Countdown />
 
-      <div className="mx-auto max-w-3xl px-5 pt-10 sm:pt-14 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-          <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-          The Forex Blueprint — 1-op-1 Mentorship
+        {/* Purple pill badge */}
+        <div className="mt-10 flex justify-center">
+          <span className="inline-block rounded-md bg-primary px-4 py-1.5 text-[11px] sm:text-xs font-bold italic uppercase tracking-wide text-primary-foreground">
+            Dit Systeem Werkt Alleen Voor Serieuze Traders
+          </span>
         </div>
 
-        <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
-          Stop met het breken van je <span className="text-primary">eigen regels</span>.
-          <br className="hidden sm:block" />
-          Bouw een professioneel tradingproces en behaal consistente payouts.
+        {/* Massive headline with selective purple highlights */}
+        <h1 className="mt-8 text-center text-3xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
+          "Kopieer &amp; Plak Mijn <span className="text-primary">Bewezen Blueprint</span> Om Eindelijk Te <span className="text-primary">Slagen</span> Voor Je Prop Firm Challenge — En Consistente Payouts Te Behalen"
         </h1>
 
-        <p className="mt-6 text-base sm:text-lg leading-relaxed font-medium" style={{ color: "var(--accent-red)" }}>
-          In een markt vol snelle beloftes, bouwen wij aan blijvende resultaten. Krijg de structuur, 1-op-1
-          accountability en mentale controle die je nu mist. Bekijk de video en zie hoe onze leden de prop
-          firm challenges eindelijk verslaan.
+        <p className="mt-7 text-center text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+          Bekijk de video hieronder, want het beste komt nog…
+          <br />
+          Als jij niet slaagt voor je challenge, dan trainen we je gratis verder tot je wél slaagt.
         </p>
       </div>
 
@@ -245,21 +241,9 @@ function Landing() {
       <section className="mx-auto mt-10 max-w-3xl px-5">
         <VSLPlayer />
 
-        {/* Countdown */}
-        <div className="mt-10 rounded-2xl border border-border bg-card p-6 sm:p-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[var(--accent-red)]/10 px-3 py-1 text-xs font-semibold text-[var(--accent-red)]">
-            <Clock className="h-3.5 w-3.5" /> Deze aanbieding verloopt over
-          </div>
-          <div className="mt-5">
-            <Countdown />
-          </div>
-          <p className="mt-5 text-sm text-muted-foreground">
-            Na de timer sluiten we de inschrijvingen voor deze week.
-          </p>
-          <div className="mt-6 flex flex-col items-center gap-3">
-            <CTAButton />
-            <p className="text-xs text-muted-foreground">100% gratis — geen verplichtingen.</p>
-          </div>
+        <div className="mt-10 flex flex-col items-center gap-3">
+          <CTAButton />
+          <p className="text-xs text-muted-foreground">100% gratis — geen verplichtingen.</p>
         </div>
       </section>
 
